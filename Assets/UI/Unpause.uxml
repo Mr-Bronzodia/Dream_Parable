@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Unpause.uss?fileID=7433441132597879392&amp;guid=c1a5d9d4f5e2d2c49886f09a52f970b5&amp;type=3#Unpause" />
+    <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UnpauseButton" class="unpause-button hidden" />
+</ui:UXML>
