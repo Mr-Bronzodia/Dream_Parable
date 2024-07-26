@@ -11,6 +11,8 @@ public class Agent : MonoBehaviour, IDamageable
     [SerializeField] private float _maxHealth = 3f;
     [SerializeField] private float _damageGracePeriod = 0.1f;
 
+    public System.Action<Agent> OnAgentDestroyed;
+
 
     private void OnEnable()
     {
@@ -74,6 +76,8 @@ public class Agent : MonoBehaviour, IDamageable
 
     private void DestroyAgent()
     {
+        OnAgentDestroyed?.Invoke(this);
+
         Destroy(gameObject);
     }
 
