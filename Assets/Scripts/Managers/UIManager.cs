@@ -12,10 +12,15 @@ public class UIManager : MonoBehaviour
     private VisualElement _pauseButtonVE;
     private VisualElement _healthBarVE;
     private VisualElement _nameLabelVE;
+    private VisualElement _marcoPoloVE;
 
     private Button _pauseButton;
     private ProgressBar _healthBarSlider;
     private Label _nameLabel;
+    private Label _marcoPoloLabel;
+    private Button _marcoPoloButton;
+
+    private bool _isMarcoPoloOpen = false;
 
 
     private void Awake()
@@ -36,7 +41,7 @@ public class UIManager : MonoBehaviour
 
         _pauseButtonVE = _uiDocument.rootVisualElement.Q("UnpauseButton");
         _pauseButton = _pauseButtonVE.Q<Button>();
-        _pauseButton.clicked += GameManager.Instance.UnPauseGame;
+        _pauseButton.clicked += SelectionManager.Instance.DeselectCurrentAgent;
 
         _healthBarVE = _uiDocument.rootVisualElement.Q("HealthBar");
         _healthBarSlider = _healthBarVE.Q<ProgressBar>();
@@ -44,8 +49,14 @@ public class UIManager : MonoBehaviour
         _nameLabelVE = _uiDocument.rootVisualElement.Q("TextBackground");
         _nameLabel = _nameLabelVE.Q<Label>();
 
-        GameManager.Instance.OnPauseStateChanged += PauseStateChanged;
+        _marcoPoloVE = _uiDocument.rootVisualElement.Q("MarcoPoloTab");
+        _marcoPoloLabel = _marcoPoloVE.Q<Label>();
+        _marcoPoloButton = _marcoPoloVE.Q<Button>();
+        _marcoPoloLabel.text = MarcoPolo.Solve();
+        _marcoPoloButton.clicked += ToggleMarcoPolo;
+
         SelectionManager.Instance.OnAgentSelected += AgentSelected;
+        SelectionManager.Instance.OnAgentDeSelected += AgentDeselected;
     }
 
     private void AgentSelected(Agent agent)
@@ -58,17 +69,29 @@ public class UIManager : MonoBehaviour
 
         _healthBarVE.RemoveFromClassList("hidden");
         _nameLabelVE.RemoveFromClassList("hidden");
+        _pauseButtonVE.RemoveFromClassList("hidden");
     }
 
-    private void PauseStateChanged(bool isPaused)
+    private void ToggleMarcoPolo()
     {
-        if (isPaused)
+        if (!_isMarcoPoloOpen)
         {
-            _pauseButtonVE.RemoveFromClassList("hidden");
-            return;
+            _marcoPoloVE.AddToClassList("marco-polo");
+            _marcoPoloVE.RemoveFromClassList("marco-polo-closed");
         }
+        else
+        {
+            _marcoPoloVE.RemoveFromClassList("marco-polo");
+            _marcoPoloVE.AddToClassList("marco-polo-closed");
+        }
+            
 
+        _isMarcoPoloOpen = !_isMarcoPoloOpen;
+        Debug.Log(_isMarcoPoloOpen);
+    }
 
+    private void AgentDeselected()
+    {
         _pauseButtonVE.AddToClassList("hidden");
         _healthBarVE.AddToClassList("hidden");
         _nameLabelVE.AddToClassList("hidden");
@@ -77,7 +100,8 @@ public class UIManager : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.Instance.OnPauseStateChanged -= PauseStateChanged;
-        _pauseButton.clicked -= GameManager.Instance.UnPauseGame;
+        SelectionManager.Instance.OnAgentDeSelected -= AgentDeselected;
+        _pauseButton.clicked -= SelectionManager.Instance.DeselectCurrentAgent;
+        _marcoPoloButton.clicked -= ToggleMarcoPolo;
     }
 }

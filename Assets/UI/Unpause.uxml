@@ -1,8 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Unpause.uss?fileID=7433441132597879392&amp;guid=c1a5d9d4f5e2d2c49886f09a52f970b5&amp;type=3#Unpause" />
     <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UnpauseButton" class="unpause-button hidden" />
-    <ui:VisualElement name="TextBackground" class="text-background hidden" style="flex-grow: 1; width: 30%; height: 57px; top: 257px; left: 672px;">
+    <ui:VisualElement name="TextBackground" class="text-background hidden" style="flex-grow: 1; width: 30%; height: 57px; top: 27%; left: auto;">
         <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text-text" style="flex-shrink: 1; flex-grow: 1; align-self: center; justify-content: center; align-items: center;" />
     </ui:VisualElement>
-    <ui:ProgressBar value="50" name="HealthBar" class="health-bar hidden" style="color: rgb(255, 255, 255); -unity-background-image-tint-color: rgb(226, 81, 14); background-color: rgb(248, 70, 29); top: 29%; position: absolute;" />
+    <ui:ProgressBar value="50" name="HealthBar" class="health-bar hidden" style="color: rgb(255, 255, 255); -unity-background-image-tint-color: rgb(226, 81, 14); background-color: rgb(248, 70, 29); top: 33%; position: absolute;" />
+    <ui:VisualElement name="MarcoPoloTab" class="marco-polo-closed">
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1; justify-content: center; align-self: auto; align-items: auto; flex-wrap: wrap; width: 100%; flex-direction: column; font-size: 8.5px; height: 100%; -unity-text-align: upper-left; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;" />
+        <ui:Button text="&lt;" parse-escape-sequences="true" display-tooltip-when-elided="true" class="unpause-button" style="width: 20%; height: 20%; align-self: flex-end; left: 100%; position: absolute; top: 40%; background-color: rgb(56, 56, 56); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+    </ui:VisualElement>
 </ui:UXML>

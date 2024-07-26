@@ -11,6 +11,7 @@ public class SelectionManager : MonoBehaviour
 
     public static SelectionManager Instance { get; private set; }
     public System.Action<Agent> OnAgentSelected;
+    public System.Action OnAgentDeSelected;
 
     private void Awake()
     {
@@ -41,6 +42,11 @@ public class SelectionManager : MonoBehaviour
 
             OnAgentSelected?.Invoke(agent);
         }
+    }
+
+    public void DeselectCurrentAgent()
+    {
+        OnAgentDeSelected?.Invoke();
     }
 
     private void OnDisable()
