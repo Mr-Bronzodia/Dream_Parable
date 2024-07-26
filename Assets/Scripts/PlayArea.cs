@@ -6,9 +6,9 @@ public class PlayArea : MonoBehaviour
 {
     private readonly float PLAY_AREA_DEFAULT_SIZE = 10f;
 
-    [SerializeField] private Vector2 _playAreaSize;
-
     private Bounds _playAreaBounds;
+
+    [SerializeField] private Vector2 _playAreaSize;
 
     public Bounds PlayAreaBounds { get { return _playAreaBounds; } }
 

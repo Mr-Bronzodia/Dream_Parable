@@ -1,12 +1,16 @@
 using UnityEngine;
 
-public class Agent : MonoBehaviour
+public class Agent : MonoBehaviour, IDamageable
 {
     private Vector3 _currentMovementDirection = Vector3.zero;
     private Bounds _playArea;
+    private float _currentHealth = 0;
+    private float _nextDamageTime = 0;
 
-    [SerializeField]
-    private float _speed = 1f;
+    [SerializeField] private float _speed = 1f;
+    [SerializeField] private float _maxHealth = 3f;
+    [SerializeField] private float _damageGracePeriod = 0.1f;
+
 
     private void OnEnable()
     {
@@ -15,6 +19,7 @@ public class Agent : MonoBehaviour
     private void Start()
     {
         _playArea = GameManager.Instance.PlayArea.PlayAreaBounds;
+        _currentHealth = _maxHealth;
     }
 
     private bool IsAgentInsidePlayArea()
@@ -45,6 +50,12 @@ public class Agent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
+            return;
+
+        damageable.TakeDamage(1f);
+        this.TakeDamage(1f);
+
         Vector3 faceAwayCollisionDirection = (other.transform.position - transform.position) * -1f;
 
         RotateAgentTowardDirection(faceAwayCollisionDirection, 75);
@@ -59,5 +70,23 @@ public class Agent : MonoBehaviour
 
         Vector3 playAreaCentreDirection = _playArea.center - transform.position;
         RotateAgentTowardDirection(playAreaCentreDirection, 180);
+    }
+
+    private void DestroyAgent()
+    {
+        Destroy(gameObject);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (Time.time < _nextDamageTime)
+            return;
+
+        _currentHealth -= damage;
+
+        if (_currentHealth <= 0)
+            DestroyAgent();
+
+        _nextDamageTime = Time.time + _damageGracePeriod;
     }
 }
