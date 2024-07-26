@@ -87,7 +87,6 @@ public class UIManager : MonoBehaviour
             
 
         _isMarcoPoloOpen = !_isMarcoPoloOpen;
-        Debug.Log(_isMarcoPoloOpen);
     }
 
     private void AgentDeselected()

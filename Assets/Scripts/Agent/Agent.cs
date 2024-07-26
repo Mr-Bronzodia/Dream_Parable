@@ -20,6 +20,8 @@ public class Agent : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         _currentMovementDirection = GetRandomDirection();
+        transform.forward = _currentMovementDirection;
+
         GameManager.Instance.OnPauseStateChanged += PauseStateChanged;
     }
 
@@ -53,7 +55,7 @@ public class Agent : MonoBehaviour, IDamageable
         newDirection.Normalize();
 
         _currentMovementDirection = newDirection;
-    
+        transform.forward = _currentMovementDirection;
     }
 
     private static Vector3 GetRandomDirection()
