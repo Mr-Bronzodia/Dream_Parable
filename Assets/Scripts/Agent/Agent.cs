@@ -12,6 +12,7 @@ public class Agent : MonoBehaviour, IDamageable
     [SerializeField] private float _damageGracePeriod = 0.1f;
 
     public System.Action<Agent> OnAgentDestroyed;
+    public float Health { get { return _currentHealth; } }
 
 
     private void OnEnable()

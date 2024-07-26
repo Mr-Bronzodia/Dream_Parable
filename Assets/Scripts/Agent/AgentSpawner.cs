@@ -6,7 +6,7 @@ public class AgentSpawner : MonoBehaviour
 {
     private Bounds _playArea;
     private float _nextSpawnTime;
-    [SerializeField] private int _agentCount = 0;
+    private int _agentCount = 0;
 
     [SerializeField] private GameObject agentPrefab;
 
