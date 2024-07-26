@@ -1,4 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Unpause.uss?fileID=7433441132597879392&amp;guid=c1a5d9d4f5e2d2c49886f09a52f970b5&amp;type=3#Unpause" />
     <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UnpauseButton" class="unpause-button hidden" />
+    <ui:VisualElement name="TextBackground" class="text-background hidden" style="flex-grow: 1; width: 30%; height: 57px; top: 257px; left: 672px;">
+        <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text-text" style="flex-shrink: 1; flex-grow: 1; align-self: center; justify-content: center; align-items: center;" />
+    </ui:VisualElement>
+    <ui:ProgressBar value="50" name="HealthBar" class="health-bar hidden" style="color: rgb(255, 255, 255); -unity-background-image-tint-color: rgb(226, 81, 14); background-color: rgb(248, 70, 29); top: 29%; position: absolute;" />
 </ui:UXML>

@@ -50,6 +50,33 @@
 .hidden {
     display: flex;
     visibility: visible;
-    transition-duration: 0.2s;
+    transition-duration: 0.5s;
     opacity: 0;
+}
+
+.health-bar {
+    align-self: center;
+    width: 30%;
+    height: auto;
+    -unity-background-image-tint-color: rgb(253, 13, 6);
+    color: rgb(236, 23, 23);
+}
+
+.health-bar .unity-progress-bar__progress {
+    background-color: rgba(236, 63, 63, 0.76);
+}
+
+.text-background {
+    background-color: rgba(0, 0, 0, 0.83);
+    align-self: center;
+    position: absolute;
+}
+
+.text-text {
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
 }

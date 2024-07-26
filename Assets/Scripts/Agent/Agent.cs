@@ -14,6 +14,7 @@ public class Agent : MonoBehaviour, IDamageable
 
     public System.Action<Agent> OnAgentDestroyed;
     public float Health { get { return _currentHealth; } }
+    public float MaxHealth { get { return _maxHealth; } }
 
 
     private void OnEnable()
