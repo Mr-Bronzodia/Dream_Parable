@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Agent : MonoBehaviour
@@ -25,11 +23,17 @@ public class Agent : MonoBehaviour
         return _playArea.Contains(new Vector3(transform.position.x, 0f, transform.position.z));
     }
 
-    private void ReflectCurrentMovementDirection()
+    private void ChangeMovementDirection(float degreeRange)
     {
-        float radianAngle = Random.Range(-180f, 180f) * Mathf.Rad2Deg;
+        float radianAngle = Random.Range(-degreeRange, degreeRange) * Mathf.Rad2Deg;
         _currentMovementDirection = (_playArea.center - transform.position + new Vector3(Mathf.Cos(radianAngle), 0, Mathf.Sin(radianAngle))).normalized;
         _currentMovementDirection.y = 0;
+    
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ChangeMovementDirection(360);
     }
 
     private void Update()
@@ -37,6 +41,6 @@ public class Agent : MonoBehaviour
         transform.position += _currentMovementDirection * _speed * Time.deltaTime;
 
         if (!IsInsidePlayArea())
-            ReflectCurrentMovementDirection();
+            ChangeMovementDirection(180);
     }
 }
