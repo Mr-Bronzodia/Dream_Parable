@@ -39,7 +39,7 @@ public class Agent : MonoBehaviour, IDamageable
     
     }
 
-    private Vector3 GetRandomDirection()
+    private static Vector3 GetRandomDirection()
     {
         Vector3 direction = Random.insideUnitSphere.normalized;
         direction.y = 0;
