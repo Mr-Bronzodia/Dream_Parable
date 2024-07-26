@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AgentSpawner : MonoBehaviour
@@ -21,7 +19,7 @@ public class AgentSpawner : MonoBehaviour
 
     private void Start()
     {
-        _playArea = GameManager.Instance.PlayArea.PlayAreaBounds;
+        _playArea = GameManager.Instance.PlayArea.Bounds;
 
         int startingAgentCount = Random.Range(minStartingAgentCount, maxStartingAgentCount);
         for (int i = 0; i < startingAgentCount; i++)

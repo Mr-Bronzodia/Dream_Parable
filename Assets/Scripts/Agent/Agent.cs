@@ -22,6 +22,8 @@ public class Agent : MonoBehaviour, IDamageable
         _currentMovementDirection = GetRandomDirection();
         transform.forward = _currentMovementDirection;
 
+        _currentHealth = _maxHealth;
+
         GameManager.Instance.OnPauseStateChanged += PauseStateChanged;
     }
 
@@ -32,8 +34,7 @@ public class Agent : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        _playArea = GameManager.Instance.PlayArea.PlayAreaBounds;
-        _currentHealth = _maxHealth;
+        _playArea = GameManager.Instance.PlayArea.Bounds;
     }
 
     private void PauseStateChanged(bool isPaused)

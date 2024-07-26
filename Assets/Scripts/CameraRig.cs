@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraRig : MonoBehaviour
 {
-    private Vector3 _defalutPosition;
+    private Vector3 _defaultPosition;
     private Quaternion _defaultRotation;
 
     private Vector3 _desiredPosition;
@@ -17,7 +15,7 @@ public class CameraRig : MonoBehaviour
         _desiredPosition = transform.position;
         _desiredRotation = transform.rotation;
 
-        _defalutPosition = transform.position;
+        _defaultPosition = transform.position;
         _defaultRotation = transform.rotation;
     }
 
@@ -36,7 +34,7 @@ public class CameraRig : MonoBehaviour
 
     public void MoveRigToDefaultPosition()
     {
-        _desiredPosition = _defalutPosition;
+        _desiredPosition = _defaultPosition;
         _desiredRotation = _defaultRotation;
     }
 }

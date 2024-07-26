@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -35,10 +32,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void AssignVisualElements()
     {
-        _uiDocument = GetComponent<UIDocument>();
-
         _pauseButtonVE = _uiDocument.rootVisualElement.Q("UnpauseButton");
         _pauseButton = _pauseButtonVE.Q<Button>();
         _pauseButton.clicked += SelectionManager.Instance.DeselectCurrentAgent;
@@ -57,6 +52,13 @@ public class UIManager : MonoBehaviour
 
         SelectionManager.Instance.OnAgentSelected += AgentSelected;
         SelectionManager.Instance.OnAgentDeSelected += AgentDeselected;
+    }
+
+    private void OnEnable()
+    {
+        _uiDocument = GetComponent<UIDocument>();
+
+        AssignVisualElements();
     }
 
     private void AgentSelected(Agent agent)

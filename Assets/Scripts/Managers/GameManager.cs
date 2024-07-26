@@ -1,15 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PlayArea playArea;
+    [SerializeField] private PlayArea _playArea;
     [SerializeField] private CameraRig _cameraRig;
 
     public static GameManager Instance { get; private set; }
-    public PlayArea PlayArea { get { return playArea; } }
+    public PlayArea PlayArea { get { return _playArea; } }
 
     public System.Action<bool> OnPauseStateChanged;
 

@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d356fb569998443a6e15dffe6aedb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playAreaSize: {x: 10, y: 10}
+  _playAreaSize: {x: 12, y: 12}
 --- !u!23 &360140963
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -722,7 +722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4d3ac45158ccc4b809a181c8e7c081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playArea: {fileID: 360140961}
+  _playArea: {fileID: 360140961}
   _cameraRig: {fileID: 330585548}
 --- !u!1 &1337256833
 GameObject:
