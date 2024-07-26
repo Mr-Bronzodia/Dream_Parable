@@ -10,13 +10,14 @@ public class PlayArea : MonoBehaviour
 
     private Bounds _playAreaBounds;
 
-    public Bounds Bounds { get { return _playAreaBounds; } }
+    public Bounds PlayAreaBounds { get { return _playAreaBounds; } }
 
 
     private void OnEnable()
     {
-        _playAreaBounds = new Bounds(gameObject.transform.position, new Vector3(_playAreaSize.x, 1f, _playAreaSize.y));
+        _playAreaBounds = new Bounds(transform.position, new Vector3(_playAreaSize.x, 1f, _playAreaSize.y));
     }
+
 
     private void Start()
     {
