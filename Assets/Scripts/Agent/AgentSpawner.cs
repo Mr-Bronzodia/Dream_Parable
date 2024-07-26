@@ -7,6 +7,7 @@ public class AgentSpawner : MonoBehaviour
     private Bounds _playArea;
     private float _nextSpawnTime;
     private int _agentCount = 0;
+    private bool _isGamePaused = false;
 
     [SerializeField] private GameObject agentPrefab;
 
@@ -25,6 +26,21 @@ public class AgentSpawner : MonoBehaviour
         int startingAgentCount = Random.Range(minStartingAgentCount, maxStartingAgentCount);
         for (int i = 0; i < startingAgentCount; i++)
             SpawnAgent();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.OnPauseStateChanged += PauseStateChanged;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnPauseStateChanged -= PauseStateChanged;
+    }
+
+    private void PauseStateChanged(bool isPaused)
+    {
+        _isGamePaused = isPaused;
     }
 
     private void SpawnAgent()
@@ -62,6 +78,9 @@ public class AgentSpawner : MonoBehaviour
 
     private void Update()
     {
+        if (_isGamePaused) 
+            return;
+
         if (_agentCount >= maxAgentCount)
             return;
 

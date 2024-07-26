@@ -10,6 +10,7 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private LayerMask _selectionLayerMask;
 
     public static SelectionManager Instance { get; private set; }
+    public System.Action<Agent> OnAgentSelected;
 
     private void Awake()
     {
@@ -38,8 +39,7 @@ public class SelectionManager : MonoBehaviour
             if (!hit.collider.gameObject.TryGetComponent<Agent>(out Agent agent))
                 return;
 
-            Debug.Log(agent.name);
-            Debug.Log(agent.Health);
+            OnAgentSelected?.Invoke(agent);
         }
     }
 

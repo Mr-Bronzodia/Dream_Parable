@@ -6,6 +6,7 @@ public class Agent : MonoBehaviour, IDamageable
     private Bounds _playArea;
     private float _currentHealth = 0;
     private float _nextDamageTime = 0;
+    private bool _isGamePaused = false;
 
     [SerializeField] private float _speed = 1f;
     [SerializeField] private float _maxHealth = 3f;
@@ -18,11 +19,23 @@ public class Agent : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         _currentMovementDirection = GetRandomDirection();
+        GameManager.Instance.OnPauseStateChanged += PauseStateChanged;
     }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnPauseStateChanged -= PauseStateChanged;
+    }
+
     private void Start()
     {
         _playArea = GameManager.Instance.PlayArea.PlayAreaBounds;
         _currentHealth = _maxHealth;
+    }
+
+    private void PauseStateChanged(bool isPaused)
+    {
+        _isGamePaused = isPaused;
     }
 
     private bool IsAgentInsidePlayArea()
@@ -66,6 +79,9 @@ public class Agent : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (_isGamePaused)
+            return;
+
         transform.position += _currentMovementDirection * _speed * Time.deltaTime;
 
         if (IsAgentInsidePlayArea())
